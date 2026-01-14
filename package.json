@@ -22,7 +22,7 @@
   "author": "Korlapu Dev",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/KorlapuDev/microservice-project.git"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -46,6 +46,8 @@
     "@types/jsonwebtoken": "^9.0.10"
   },
   "dependencies": {
+    "cloudinary": "^2.8.0",
+    "http-status-codes": "^2.3.0",
     "typescript": "^5.9.3"
   }
 }
