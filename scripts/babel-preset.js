@@ -1,23 +1,26 @@
 const BABEL_ENV = process.env.BABEL_ENV;
-const inCommonJS = BABEL_ENV !== 'undefined' && BABEL_ENV === 'cjs';
-const inESM = BABEL_ENV !== 'undefined' && BABEL_ENV === 'esm';
 
-module.exports = () => {
+const inCommonJS = BABEL_ENV === "cjs";
+const inESM = BABEL_ENV === "esm";
+
+module.exports = function (api) {
+  api.cache(true);
+
+  return {
     presets: [
-        ['@babel/preset-typescript'],
-        [
-            '@babel/env',
-            {
-                bugfixes: true,
-                loose: true,
-                modules: inCommonJS ? 'commonjs' : false,
-                targets: {
-                    esmodules : inESM ? true : undefined,
-                    chrome: 70,
-                },
-                modules: inCommonJS ? 'commonjs' : inESM ? false : 'auto',
-            },
-        ],
-    ];
-}
-
+      "@babel/preset-typescript",
+      [
+        "@babel/preset-env",
+        {
+          bugfixes: true,
+          loose: true,
+          modules: inCommonJS ? "commonjs" : false,
+          targets: {
+            esmodules: inESM || undefined,
+            chrome: 70,
+          },
+        },
+      ],
+    ],
+  };
+};
