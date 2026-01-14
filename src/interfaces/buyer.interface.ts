@@ -1,4 +1,6 @@
-import { ObjectId } from "mongoose";
+import { Types } from "mongoose";
+
+export type ObjectId = Types.ObjectId;
 
 export interface IBuyerDocument {
   _id?: string | ObjectId;

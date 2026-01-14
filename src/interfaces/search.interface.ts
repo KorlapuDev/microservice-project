@@ -1,7 +1,7 @@
-import { Field, QueryDslRangeQuery, SearchHit } from '@elastic/elasticsearch/lib/api/types';
+import type { estypes } from "@elastic/elasticsearch";
 
-export interface ISearchResult {
-  hits: SearchHit[];
+export interface ISearchResult<T = unknown> {
+  hits: estypes.SearchHit<T>[];
   total: number;
 }
 
@@ -12,7 +12,7 @@ export interface IHitsTotal {
 
 export interface IQueryList {
   query_string?: IQueryString;
-  range?: Partial<Record<Field, QueryDslRangeQuery>>;
+  range?: Partial<Record<string, estypes.QueryDslRangeQuery>>;
   term?: ITerm;
 }
 
